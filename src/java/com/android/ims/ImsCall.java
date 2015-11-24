@@ -1628,8 +1628,7 @@ public class ImsCall implements ICall {
             }
         }
 
-        if (mConferenceParticipants != null && !mConferenceParticipants.isEmpty()
-                && mListener != null) {
+        if (mConferenceParticipants != null && mListener != null) {
             try {
                 mListener.onConferenceParticipantsStateChanged(this, mConferenceParticipants);
             } catch (Throwable t) {
@@ -1670,9 +1669,6 @@ public class ImsCall implements ICall {
                 mSessionEndDuringMerge = true;
                 mSessionEndDuringMergeReasonInfo = reasonInfo;
                 return;
-            } else if (mTerminationRequestPending) {
-                // Abort the merge if we receive a termination request from telephony or the user.
-                clearMergeInfo();
             }
 
             // If we are terminating the conference call, notify using conference listeners.
